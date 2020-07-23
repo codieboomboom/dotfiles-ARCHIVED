@@ -21,6 +21,5 @@ for file in .*; do
     fi
   fi
   # create the new link
-  ln -s ~/dotfiles/$file ~/$file
-  echo -en '\tlinked'
+  ln -s ~/dotfiles/$file ~/$file && echo "created symlink to $file"
 done

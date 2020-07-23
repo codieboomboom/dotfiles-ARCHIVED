@@ -2,5 +2,12 @@
 	name = Do Anh Tu
 	email = anhtu.do1998@gmail.com
 [alias]
+	#Drawing history 
 	graph = log --all --graph --decorate --oneline
 	graphfull = log --all --graph --decorate
+	# List aliases
+	aliases = config --get-regexp alias
+	# Commit amend the currently staged files to the latest commit
+	amend = commit --amend --reuse-message=HEAD
+	# Default merge to --no-ff
+	merge = merge --no-ff

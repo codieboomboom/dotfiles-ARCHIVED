@@ -1,0 +1,6 @@
+[user]
+	name = Do Anh Tu
+	email = anhtu.do1998@gmail.com
+[alias]
+	graph = log --all --graph --decorate --oneline
+	graphfull = log --all --graph --decorate

@@ -10,4 +10,4 @@
 	# Commit amend the currently staged files to the latest commit
 	amend = commit --amend --reuse-message=HEAD
 	# Default merge to --no-ff
-	merge = merge --no-ff
+	m = merge --no-ff

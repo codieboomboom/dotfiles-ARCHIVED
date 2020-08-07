@@ -95,4 +95,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source /opt/ros/noetic/setup.bash
+if [ -d /opt/ros/noetic ]; then
+ source /opt/ros/noetic/setup.bash
+fi

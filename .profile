@@ -26,3 +26,7 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# set path to Go binary if it exist
+if [ -d "/usr/local/go/bin" ] ; then
+    PATH="/usr/local/go/bin:$PATH"
+fi

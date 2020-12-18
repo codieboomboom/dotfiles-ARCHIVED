@@ -21,3 +21,13 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 #Resolve easily mistype to correct command
 alias dc='cd'
+
+#alias setup for dsai environment
+alias dsai='source ~/DSAI/env/bin/activate'
+alias dsaicd='cd ~/DSAI'
+
+#Rotate the screen
+alias rotatescreen='xrandr --output DP2 --rotate right --pos 1920x0' 
+
+#NTU VPN
+alias ntu='sudo openconnect ntuvpn.ntu.edu.sg --prot=pulse'

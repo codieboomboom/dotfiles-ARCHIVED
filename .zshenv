@@ -40,8 +40,15 @@ fi
 #Set capslock to be esc if short tap
 xcape -e 'Control_L=Escape'
 
+#Bind key for zsh-autosuggestions
+bindkey '^ ' autosuggest-accept
+
 #Add path to opencv and Ros
-source /opt/ros/noetic/setup.zsh
-source ~/catkin_ws/devel/setup.zsh
-#export PATH=$PATH:~/libs/opencv3/release/installed
+#source /opt/ros/noetic/setup.zsh
+
+# Add path to cargo/Rust environment
 source "$HOME/.cargo/env"
+
+# Install Ruby Gems to ~/gems 
+export GEM_HOME="$HOME/gems"
+export PATH="$PATH:$HOME/gems/bin"

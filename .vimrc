@@ -15,7 +15,7 @@ set nocompatible
 syntax on
 
 " Disable the default Vim startup message.
-set shortmess+=I
+" set shortmess+=I "
 
 " Show line numbers.
 set number
@@ -63,6 +63,7 @@ set noerrorbells visualbell t_vb=
 " sometimes be convenient.
 set mouse+=a
 
+" ############ KEY RE-BINDINGS #################### "
 " Try to prevent bad habits like using the arrow keys for movement. This is
 " not the only possible bad habit. For example, holding down the h/j/k/l keys
 " for movement, rather than using more efficient movement commands, is also a
@@ -84,3 +85,13 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" ###################### VIM PLUG-INS ############ "
+call plug#begin('~/.local/share/nvim/plugged')
+
+" Load plugins "
+
+" GUI Plugins "
+" Plug 'git@github.com:itchyny/lightline.vim.git'
+
+call plug#end()

@@ -1,13 +1,9 @@
-Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true"
-       , additionalFonts = []
-       , borderColor = "black"
-       , border = TopB
-       , bgColor = "black"
-       , fgColor = "grey"
-       , alpha = 255
+Config { font = "xft:Hack Nerd Font:pixelsize=15:antialias=true:hinting=true"
+       , additionalFonts = ["xft:Hack Nerd Font:pixelsize=20:antialias=true:hinting=true"]
+       , bgColor = "#1b1918"
+       , fgColor = "#a8a19f"
+       , alpha = 128 
        , position = Top
-       , textOffset = -1
-       , iconOffset = -1
        , lowerOnStart = True
        , pickBroadest = False
        , persistent = False
@@ -15,24 +11,38 @@ Config { font = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=true"
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C",
-                                          "-L","18","-H","25",
-                                          "--normal","green",
-                                          "--high","red",
-                                          "--low","lightblue"] 36000
-                    , Run Network "eth0" ["-L","0","-H","32",
+       , commands = [ Run Network "eth0" ["-L","0","-H","32",
                                           "--normal","green","--high","red"] 10
                     , Run Network "eth1" ["-L","0","-H","32",
                                           "--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50",
-                               "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Com "uname" ["-s","-r"] "" 36000
-                    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
-                    ]
+		    , Run Com "wireless.sh" [] "wifi" 30
+                    , Run Cpu ["-t", "<fn=1>\xf2db </fn>CPU(<total>%)", 
+		                  "--high", "#f22c40",
+				  "--normal", "#df5320",
+				  "--low", "#7b9726"
+			       ] 20
+                    , Run Memory ["-t","<fn=1>\xf85a </fn>RAM(<usedratio>%)",
+		                  "--high", "#f22c40",
+				  "--normal", "#df5320",
+				  "--low", "#7b9726"
+		                 ] 20
+                    , Run Com "uname" ["-m","-r", "-o"] "kernel_info" 36000
+		    , Run Com "uname" ["-n"] "host_name" 36000
+                    , Run Date "<fn=1>\xf5ef </fn> %a %b %_d %Y - %H:%M" "date" 50
+		    , Run Battery ["-t","BATT <acstatus>(<left>%)",
+		                   "-L","10",
+				   "-H","40",
+				   "--low", "#f22c40",
+				   "--normal", "#df5320",
+				   "--high", "#7b9726",
+				   "--",
+				   "-i", "<fn=1>\xfba3 </fn>", --idling due to thresholded and AC
+				   "-O", "<fn=1>\xf584 \xfba3 </fn>", --when battery is charging and AC
+				   "-o", "<fn=1>\xfba4 </fn>"
+				   ] 50
+		    ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %eth0% - %eth1% }\
-                    \{ <fc=#ee9a00>%date%</fc>| %EGPF% | %uname%"
+       , template = " %battery% :: <fc=#c33ff3>%wifi%</fc> :: %cpu% :: %memory% }\
+                    \{ <fc=#df5320>%date%</fc> :: <fc=#407ee7>%host_name%</fc> :: <fc=#6666ea>%kernel_info%</fc> "
        }

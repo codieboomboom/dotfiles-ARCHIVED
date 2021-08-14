@@ -33,7 +33,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 1 
+myBorderWidth   = 2 
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -55,8 +55,8 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
-myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myNormalBorderColor  = "#e6e2e0"
+myFocusedBorderColor = "#407ee7"
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -248,8 +248,8 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-	spawnOnce "nitrogen --restore &"
-	spawnOnce "compton &"
+    spawnOnce "nitrogen --restore &"
+    spawnOnce "compton &"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -257,8 +257,8 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-	xmproc <- spawnPipe "xmobar -x 0 /home/boom/.xmonad/xmobarrc"
-	xmonad $ docks defaults
+    xmproc <- spawnPipe "xmobar -x 0 /home/boom/.xmonad/xmobarrc"
+    xmonad $ docks defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will

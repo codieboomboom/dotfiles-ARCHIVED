@@ -10,7 +10,9 @@
 import XMonad
 import Data.Monoid
 import System.Exit
+import Graphics.X11.ExtraTypes.XF86  
 
+import XMonad.Actions.Volume
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
@@ -153,7 +155,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
         | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    ++
 
+    --
+    -- Mapping volume controls to the keyboard buttons
+    --
+    --
+    [ ((0, xF86XK_AudioRaiseVolume), raiseVolume 3 >> return ())
+    , ((0, xF86XK_AudioLowerVolume), lowerVolume 3 >> return ())
+    , ((0, xF86XK_AudioMute), toggleMute    >> return ())
+    ]
 
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events

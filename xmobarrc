@@ -2,7 +2,7 @@ Config { font = "xft:Hack Nerd Font:pixelsize=16:antialias=true:hinting=true"
        , additionalFonts = ["xft:Hack Nerd Font:pixelsize=20:antialias=true:hinting=true"]
        , bgColor = "#1b1918"
        , fgColor = "#a8a19f"
-       , alpha = 128 
+       , alpha = 127 
        , position = Top 
        , lowerOnStart = True
        , pickBroadest = False
@@ -12,6 +12,8 @@ Config { font = "xft:Hack Nerd Font:pixelsize=16:antialias=true:hinting=true"
        , allDesktops = True
        , overrideRedirect = True
        , commands = [ Run Com "wireless.sh" [] "wifi" 50
+                    , Run DiskU[("/", "<fn=1>\xf7c9 </fn><used>/<size> (<usedp>%)")]
+		               [] 600 
                     , Run Cpu ["-t", "<fn=1>\xf2db </fn>CPU(<total>%)", 
 		                  "--high", "#f22c40",
 				  "--normal", "#df5320",
@@ -23,6 +25,7 @@ Config { font = "xft:Hack Nerd Font:pixelsize=16:antialias=true:hinting=true"
 				  "--low", "#7b9726"
 		                 ] 50
 		    , Run Com "uname" ["-n"] "host_name" 36000
+		    , Run Com "ipaddress.sh" [] "host_address" 36000
                     , Run Date "<fn=1>\xf5ef </fn> %a %d/%m/%Y - %H:%M" "date" 50
 		    , Run Battery ["-t","<acstatus>(<left>%)",
 		                   "-L","10",
@@ -38,6 +41,6 @@ Config { font = "xft:Hack Nerd Font:pixelsize=16:antialias=true:hinting=true"
 		    ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " <fc=#f22c40> </fc> | %battery% :: <fc=#c33ff3>%wifi%</fc> :: %cpu% :: %memory% }\
-                    \{ <fc=#df5320>%date%</fc> :: <fc=#407ee7>%host_name%</fc> "
+       , template = " <fc=#f22c40> </fc> | %battery% :: <fc=#00ad9c>%wifi%</fc> :: %cpu% :: %memory% :: <fc=#407ee7>%disku%</fc> |}\
+                    \{| <fc=#6666ea>%date%</fc> :: <fc=#c33ff3>%host_name% @ %host_address%</fc> "
        }

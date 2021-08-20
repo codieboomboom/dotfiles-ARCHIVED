@@ -1,4 +1,4 @@
-Config { font = "xft:Hack Nerd Font:pixelsize=16:antialias=true:hinting=true"
+Config { font = "xft:Hack Nerd Font:pixelsize=17:antialias=true:hinting=true"
        , additionalFonts = ["xft:Hack Nerd Font:pixelsize=20:antialias=true:hinting=true"]
        , bgColor = "#1b1918"
        , fgColor = "#a8a19f"
@@ -12,21 +12,21 @@ Config { font = "xft:Hack Nerd Font:pixelsize=16:antialias=true:hinting=true"
        , allDesktops = True
        , overrideRedirect = True
        , commands = [ Run Com "wireless.sh" [] "wifi" 50
-                    , Run DiskU[("/", "<fn=1>\xf7c9 </fn><used>/<size> (<usedp>%)")]
+                    , Run StdinReader
+                    , Run DiskU[("/", "<fn=1>\xf7c9 </fn><used>/<size>")]
 		               [] 600 
-                    , Run Cpu ["-t", "<fn=1>\xf2db </fn>CPU(<total>%)", 
+                    , Run Cpu ["-t", "<fn=1>\xf85a </fn>CPU(<total>%)", 
 		                  "--high", "#f22c40",
 				  "--normal", "#df5320",
 				  "--low", "#7b9726"
 			       ] 50
-                    , Run Memory ["-t","<fn=1>\xf85a </fn>RAM(<usedratio>%)",
+                    , Run Memory ["-t","RAM(<usedratio>%)",
 		                  "--high", "#f22c40",
 				  "--normal", "#df5320",
 				  "--low", "#7b9726"
 		                 ] 50
-		    , Run Com "uname" ["-n"] "host_name" 36000
 		    , Run Com "ipaddress.sh" [] "host_address" 36000
-                    , Run Date "<fn=1>\xf5ef </fn> %a %d/%m/%Y - %H:%M" "date" 50
+                    , Run Date "%d/%m/%Y - %H:%M" "date" 50
 		    , Run Battery ["-t","<acstatus>(<left>%)",
 		                   "-L","10",
 				   "-H","40",
@@ -34,13 +34,13 @@ Config { font = "xft:Hack Nerd Font:pixelsize=16:antialias=true:hinting=true"
 				   "--normal", "#df5320",
 				   "--high", "#7b9726",
 				   "--",
-				   "-i", "<fn=1>\xfba3 </fn>", --idling due to thresholded and AC
-				   "-O", "<fn=1>\xf584 \xfba3 </fn>", --when battery is charging and AC
-				   "-o", "<fn=1>\xfba4 </fn>"
+				   "-i", "<fc=#f1efee><fn=1>\xfba3 </fn></fc>", --idling due to thresholded and AC
+				   "-O", "<fc=#f1efee><fn=1>\xf584 \xfba3 </fn></fc>", --when battery is charging and AC
+				   "-o", "<fc=#68615e><fn=1>\xfba4 </fn></fc>"
 				   ] 50
 		    ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " <fc=#f22c40> </fc> | %battery% :: <fc=#00ad9c>%wifi%</fc> :: %cpu% :: %memory% :: <fc=#407ee7>%disku%</fc> |}\
-                    \{| <fc=#6666ea>%date%</fc> :: <fc=#c33ff3>%host_name% @ %host_address%</fc> "
+       , template = "<fc=#f22c40> </fc>| %battery% | <fc=#00ad9c>%wifi%</fc> | %cpu% %memory% | <fc=#407ee7>%disku%</fc> | %StdinReader%}\
+                    \{<fc=#6666ea>%date%</fc> | <fc=#c33ff3>%host_address%</fc>"
        }

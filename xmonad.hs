@@ -13,8 +13,11 @@ import System.Exit
 import Graphics.X11.ExtraTypes.XF86  
 
 import XMonad.Actions.Volume
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Util.Brightness
 import XMonad.Util.SpawnOnce
+import XMonad.Util.WorkspaceCompare
 import XMonad.Util.Run
 
 import qualified XMonad.StackSet as W
@@ -166,6 +169,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_AudioMute), toggleMute    >> return ())
     ]
 
+    ++
+    --
+    -- Mapping brightness for lcd backlight +/-10% steps
+    --
+    --
+    [ ((0, xF86XK_MonBrightnessDown), spawn "light -U 10")
+    , ((0, xF86XK_MonBrightnessUp), spawn "light -A 10")
+    ]
+
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
@@ -248,7 +260,12 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
-myLogHook = return () 
+myLogHook p = dynamicLogWithPP $ def { ppLayout = wrap "(<fc=#f1efee>" "</fc>)"
+  , ppSort = getSortByXineramaRule  -- multimonitor workspace
+  , ppTitleSanitize = const ""  -- Also about window's title
+  , ppVisible = wrap "(" ")"  -- Non-focused (but still visible) screen
+  , ppCurrent = wrap "<fc=#c38418>[</fc><fc=#f1efee>" "</fc><fc=#c38418>]</fc>"-- Non-focused (but still visible) screen
+  , ppOutput = hPutStrLn p}
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -269,15 +286,7 @@ myStartupHook = do
 --
 main = do
     xmproc <- spawnPipe "xmobar -x 0 /home/boom/.xmonad/xmobarrc"
-    xmonad $ docks defaults
-
--- A structure containing your configuration settings, overriding
--- fields in the default config. Any you don't override, will
--- use the defaults defined in xmonad/XMonad/Config.hs
---
--- No need to modify this.
---
-defaults = def {
+    xmonad $ docks $ def {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -296,7 +305,7 @@ defaults = def {
         layoutHook         = myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook,
+        logHook            = myLogHook xmproc,
         startupHook        = myStartupHook
     }
 

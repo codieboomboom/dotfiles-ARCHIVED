@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 iwconfig eth2 2>&1 | grep -q no\ wireless\ extensions\. && {
   echo wired
@@ -26,6 +26,6 @@ case $bars in
 esac
 
 wireless_icon=" "
-echo $wireless_icon '' $essid $bar
+echo $wireless_icon '' ${essid:0:3}...$bar
 
 exit 0

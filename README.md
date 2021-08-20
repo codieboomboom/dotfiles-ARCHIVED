@@ -13,6 +13,12 @@ Execute the script
 #TODOS
 
 ## Xmobar and Xmonad
-- Voice control not working
-- Test with EGPU
-- Beautify the status bar
+- Event trigger monitor for volume, ibus input
+
+# Things I learn from Xmonad and Xmobar:
+- The basics of Haskell
+- startX
+- Startup shell order for X session and shell only session (.xinitrc, .xsession and .zshenv, .zshrc)
+- Using script such as wireless to beautify status bar
+- ibus-daemon 
+- light for screen brightness control

@@ -163,3 +163,6 @@ export IDF_PATH=~/ESP8266_RTOS_SDK
 
 # Vim keybinging
 bindkey -v
+
+# Bind key for zsh-autosuggestions
+bindkey '^ ' autosuggest-accept

@@ -1,5 +1,5 @@
-Config { font = "xft:Hack Nerd Font:pixelsize=17:antialias=true:hinting=true"
-       , additionalFonts = ["xft:Hack Nerd Font:pixelsize=20:antialias=true:hinting=true"]
+Config { font = "xft:MesloLGL Nerd Font:pixelsize=17:antialias=true:hinting=true"
+       , additionalFonts = ["xft:MesloLGL Nerd Font:pixelsize=20:antialias=true:hinting=true"]
        , bgColor = "#1b1918"
        , fgColor = "#a8a19f"
        , alpha = 127 
@@ -25,7 +25,7 @@ Config { font = "xft:Hack Nerd Font:pixelsize=17:antialias=true:hinting=true"
 				  "--normal", "#df5320",
 				  "--low", "#7b9726"
 		                 ] 50
-		    , Run Com "ipaddress.sh" [] "host_address" 36000
+		    , Run Com "~/.xmonad/ipaddress.sh" [] "host_address" 36000
                     , Run Date "%d/%m/%Y - %H:%M" "date" 50
 		    , Run Battery ["-t","<acstatus>(<left>%)",
 		                   "-L","10",
@@ -41,6 +41,6 @@ Config { font = "xft:Hack Nerd Font:pixelsize=17:antialias=true:hinting=true"
 		    ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "<fc=#f22c40> </fc>| %battery% | <fc=#00ad9c>%wifi%</fc> | %cpu% %memory% | <fc=#407ee7>%disku%</fc> | %StdinReader%}\
+       , template = "<fc=#f22c40><fn=1> </fn></fc>| %battery% | <fc=#00ad9c>%wifi%</fc> | %cpu% %memory% | <fc=#407ee7>%disku%</fc> | %StdinReader%}\
                     \{<fc=#6666ea>%date%</fc> | <fc=#c33ff3>%host_address%</fc>"
        }

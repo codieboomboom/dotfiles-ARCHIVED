@@ -15,6 +15,9 @@ import Graphics.X11.ExtraTypes.XF86
 import XMonad.Actions.Volume
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+
+import XMonad.Layout.Spacing
+
 import XMonad.Util.Brightness
 import XMonad.Util.SpawnOnce
 import XMonad.Util.WorkspaceCompare
@@ -208,7 +211,13 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout = spacingRaw True 		-- Only for > 1 window
+        (Border 0 10 10 10)		-- size of screen edge gaps 
+	True				-- enable screen edge gaps 
+	(Border 10 10 10 10)		-- Size of window gaps 
+	True				-- enable window gap 
+        $ avoidStruts 
+	(tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -276,7 +285,6 @@ myLogHook p = dynamicLogWithPP $ def { ppLayout = wrap "(<fc=#f1efee>" "</fc>)"
 --
 -- By default, do nothing.
 myStartupHook = do
-    spawnOnce "nitrogen --restore &"
     spawnOnce "compton &"
 
 ------------------------------------------------------------------------

@@ -11,7 +11,7 @@ Config { font = "xft:MesloLGL Nerd Font:pixelsize=17:antialias=true:hinting=true
        , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Com "wireless.sh" [] "wifi" 50
+       , commands = [ Run Com "wireless.sh" [] "wifi" 50 
                     , Run StdinReader
                     , Run DiskU[("/", "<fn=1>\xf7c9 </fn><used>/<size>")]
 		               [] 600 
@@ -25,7 +25,7 @@ Config { font = "xft:MesloLGL Nerd Font:pixelsize=17:antialias=true:hinting=true
 				  "--normal", "#df5320",
 				  "--low", "#7b9726"
 		                 ] 50
-		    , Run Com "~/.xmonad/ipaddress.sh" [] "host_address" 36000
+		    , Run Com "ipaddress.sh" [] "host_address" 36000
                     , Run Date "%d/%m/%Y - %H:%M" "date" 50
 		    , Run Battery ["-t","<acstatus>(<left>%)",
 		                   "-L","10",
@@ -41,6 +41,6 @@ Config { font = "xft:MesloLGL Nerd Font:pixelsize=17:antialias=true:hinting=true
 		    ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "<fc=#f22c40><fn=1> </fn></fc>| %battery% | <fc=#00ad9c>%wifi%</fc> | %cpu% %memory% | <fc=#407ee7>%disku%</fc> | %StdinReader%}\
-                    \{<fc=#6666ea>%date%</fc> | <fc=#c33ff3>%host_address%</fc>"
+       , template = "<fc=#407ee7>  </fc>| %battery% | <fc=#00ad9c>%wifi%</fc> | %cpu% %memory% | <fc=#407ee7>%disku%</fc> | %StdinReader%}\
+                    \{<fc=#6666ea>%date%</fc> | <fc=#c33ff3>%host_address%</fc> "
        }

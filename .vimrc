@@ -87,11 +87,40 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " ###################### VIM PLUG-INS ############ "
-call plug#begin('~/.local/share/nvim/plugged')
+" -------------------ALE Settings-------------------
+" Autocomplete
+set omnifunc=ale#completion#OmniFunc
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1
 
+
+" Gutters for error and warning
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'W'
+
+" Fixers for auto formatting"
+let g:ale_fixers = {
+\    '*': ['remove_trailing_lines', 'trim_whitespace'],
+\    'rust': ['rustfmt']
+\}
+
+" Trigger autocomplete + Tab to select suggestion "
+inoremap <silent><expr><TAB>
+    \ pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" Navigate to definition, reference, errors"
+nmap <silent> <C-?>  :ALEGoToDefinition<CR>
+nmap <silent> <C-\>  :ALEFindReferences<CR>
+nmap <silent> <C-.> <Plug>(ale_previous_wrap)
+nmap <silent> <C-,> <Plug>(ale_next_wrap)
+" -------------------------------------------------
+
+call plug#begin('~/.local/share/nvim/plugged')
 " Load plugins "
 
-" GUI Plugins "
-" Plug 'git@github.com:itchyny/lightline.vim.git'
+"ALE"
+Plug 'dense-analysis/ale'
 
 call plug#end()

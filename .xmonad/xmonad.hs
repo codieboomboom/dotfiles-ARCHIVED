@@ -181,6 +181,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0, xF86XK_MonBrightnessUp), spawn "light -A 10")
     ]
 
+    ++
+    --take a screenshot of entire display
+    [((modm , xK_Print ), spawn "scrot screen_%Y-%m-%d-%H-%M-%S.png -d 1 -e 'mv $f ~/Pictures/screenshots/'")
+
+    --take a screenshot of focused window
+    , ((modm .|. controlMask, xK_Print ), spawn "scrot window_%Y-%m-%d-%H-%M-%S.png -d 1-u -e 'mv $f ~/Pictures/screenshots/'")]
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --

@@ -25,8 +25,7 @@ case $bars in
   *)  bar='[UNKNOWN]' ;;
 esac
 
-wireless_icon=" "
+wireless_icon=" "
 #wireless_icon="" 
-echo $wireless_icon '' ${essid:0:3}... $bar
-
+echo $wireless_icon $bar ${essid:0:5}...
 exit 0
